@@ -3,4 +3,4 @@ Transformare din AFN-Lambda in AFD
 
 
 Input: AFN-Lambda
-Output:AFD-ul rezultat in urma aplicarii algoritmului asupra unui AFN-Lambda dat ca input
+Output: AFD-ul rezultat in urma aplicarii algoritmului asupra unui AFN-Lambda dat ca input
