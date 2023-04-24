@@ -48,7 +48,7 @@ f.close()
 ######
 AFN_Inchideri = [set() for value in AFN_Lambda] #Implementam cate un set(multime) pt. fiecare stare, astfel incat sa retinem Lambda-Inchiderile fiecarei stari in parte.
 for i in range(len(AFN_Lambda)):
-    visited = [False for i in range(Q)] #Verificam sa nu trecem de mai multe ori prin aceleasi stari.
+    visited = [False for s in range(Q)] #Verificam sa nu trecem de mai multe ori prin aceleasi stari.
 
     AFN_Inchideri[i].add(i)
     qu_1 = queue.Queue() #Implementam o coada care va adauga si va sterge, pe rand, starile prin care ajungem cu Lambda("*"), folosind metoda BFS de parcurgere.
