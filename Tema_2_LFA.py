@@ -19,10 +19,10 @@ def afisare_AFD(first, Final, D):
 
 # Main:
 ###
-# fisier = "AFN-LAMBDA_in.txt"
+fisier = "AFN-LAMBDA_in.txt"
 # fisier = "AFN-LAMBDA_in_2.txt"
 # fisier = "AFN-LAMBDA_in_3.txt"
-fisier = "AFN-LAMBDA_in_4.txt"
+# fisier = "AFN-LAMBDA_in_4.txt"
 ###
 f = open(fisier, "r")
 
@@ -46,18 +46,21 @@ f.close()
 # afisare_1(AFN_Lambda)
 ##
 ######
-
 AFN_Inchideri = [set() for value in AFN_Lambda] #Implementam cate un set(multime) pt. fiecare stare, astfel incat sa retinem Lambda-Inchiderile fiecarei stari in parte.
 for i in range(len(AFN_Lambda)):
+    visited = [False for i in range(Q)] #Verificam sa nu trecem de mai multe ori prin aceleasi stari.
+
     AFN_Inchideri[i].add(i)
     qu_1 = queue.Queue() #Implementam o coada care va adauga si va sterge, pe rand, starile prin care ajungem cu Lambda("*"), folosind metoda BFS de parcurgere.
     qu_1.put(i) #Lambda-Inchiderea cu nr. "k" contine cel putin starea "k". 
     while not qu_1.empty():
         top = qu_1.get() #Scoatem starea din coada, la momentul actual.
+        visited[top] = True #Marcam mereu starile scoase din coada.
         if "*" in AFN_Lambda[top]:
             for x in AFN_Lambda[top]["*"]:
-                AFN_Inchideri[i].add(x) #Adaugam, daca nu exista in multimea "i", toate starile "x" prin care am ajuns cu "*"(tranzitie).
-                qu_1.put(x) #Punem in coada aceste stari, pt. a putea fi prelucrate mai tarziu la rnadul lor.
+                if visited[x] == False: #Adaugam in coada si in set, doar stari nevizitate pana in acel moment.
+                    AFN_Inchideri[i].add(x) #Adaugam, daca nu exista in multimea "i", toate starile "x" prin care am ajuns cu "*"(tranzitie).
+                    qu_1.put(x) #Punem in coada aceste stari, pt. a putea fi prelucrate mai tarziu la rnadul lor.
 
 ##
 # print("Afisare LAMBDA_Inchideri:\n")    
