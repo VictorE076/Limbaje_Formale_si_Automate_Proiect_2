@@ -19,9 +19,10 @@ def afisare_AFD(first, Final, D):
 
 # Main:
 ###
-fisier = "AFN-LAMBDA_in.txt"
+# fisier = "AFN-LAMBDA_in.txt"
 # fisier = "AFN-LAMBDA_in_2.txt"
 # fisier = "AFN-LAMBDA_in_3.txt"
+fisier = "AFN-LAMBDA_in_4.txt"
 ###
 f = open(fisier, "r")
 
@@ -145,9 +146,9 @@ for key in AFD:
     if first_key == None:
         first_key = key #Starea INIT este chiar prima cheie a dictionarului AFD.
 
-    for stare in key:
-        if stare == "_": #Ignoram caractere delimitatoare("_") din stringul de stari("key").
-            continue #Trecem la urmatoarea stare.
+    tp = key.split("_") #Ne cream o lista temporara din starile cheii actuale.
+
+    for stare in tp:
         if int(stare) in F:
             F_AFD.add(key) #Punem in setul de stari finale ale AFD-ului nostru, doar starea(stringuri compuse din vechile stari din AFN si AFN_Lambda) care apare in "F"(starile finale ale Lambda_AFN-ului).
             break #Daca cel putin o stare din stringul nostru apare in "F", atunci adaugam starea in "F_AFD" si apoi dam un "break".
@@ -160,5 +161,4 @@ for key in AFD:
 
 ##################
 # AFD-ul rezultat in urma aplicarii algoritmului asupra unui AFN-Lambda dat ca input:
-afisare_AFD(first_key, F_AFD, AFD) 
-
+afisare_AFD(first_key, F_AFD, AFD)
